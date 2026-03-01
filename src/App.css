@@ -1,0 +1,545 @@
+/* ===== Premium Crypto Exchange Theme ===== */
+:root {
+  --bg: #000000;
+  --bg-elevated: #0a0a0c;
+  --surface: rgba(18, 18, 22, 0.85);
+  --surface-solid: #121216;
+  --surface-hover: rgba(28, 28, 34, 0.9);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --text: #f4f4f6;
+  --text-secondary: #a1a1aa;
+  --muted: #71717a;
+  --accent: #f7931a;
+  --accent-muted: #f9b04d;
+  --accent-glow: rgba(247, 147, 26, 0.15);
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --grid: rgba(255, 255, 255, 0.04);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+  --font-ui: 'Space Grotesk', 'Noto Sans KR', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.app.theme-btc {
+  --accent: #f7931a;
+  --accent-muted: #f9b04d;
+  --accent-glow: rgba(247, 147, 26, 0.12);
+}
+.app.theme-eth {
+  --accent: #627eea;
+  --accent-muted: #8fa3eb;
+  --accent-glow: rgba(98, 126, 234, 0.12);
+}
+.app.theme-sol {
+  --accent: #00ffa3;
+  --accent-muted: #5effc0;
+  --accent-glow: rgba(0, 255, 163, 0.12);
+}
+.app.theme-xrp {
+  --accent: #00aae4;
+  --accent-muted: #5ec8ed;
+  --accent-glow: rgba(0, 170, 228, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #000000;
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Coin-themed gradient background */
+.app {
+  position: relative;
+  min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      var(--accent-glow) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 80% 100%,
+      var(--accent-glow) 0%,
+      transparent 45%
+    ),
+    #000000;
+  pointer-events: none;
+  transition: background 0.6s ease;
+}
+
+/* ----- Header ----- */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+/* ----- Controls panel – glass style ----- */
+.controls {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.control-group {
+  margin-bottom: 1.5rem;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+/* ----- Coin selector ----- */
+.coin-selector {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.coin-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.coin-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.coin-btn.active {
+  border-width: 1px;
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-muted) 100%);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.coin-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--accent-glow);
+}
+
+.coin-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-btn.active .coin-icon svg {
+  filter: brightness(0) invert(1);
+}
+
+/* ----- Option buttons (amount, frequency) – simulation buttons with gradient when active ----- */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  padding: 0.75rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.option-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  color: var(--text);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.option-btn.active {
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-muted) 100%);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.option-btn.active:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+/* ----- Select ----- */
+.select {
+  width: 100%;
+  max-width: 260px;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2371717a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 2.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select:hover {
+  border-color: var(--border-hover);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ----- Result block – entrance animation ----- */
+@keyframes resultFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes resultSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-block {
+  animation: resultFadeIn 0.5s ease-out forwards;
+}
+
+.result-hero {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: resultSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+.result-hero-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.result-hero-amount {
+  font-family: var(--font-mono);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.result-hero-amount.positive {
+  color: var(--positive);
+  text-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
+}
+
+.result-hero-amount.negative {
+  color: var(--negative);
+  text-shadow: 0 0 40px rgba(239, 68, 68, 0.2);
+}
+
+/* ----- Summary cards (3 columns) ----- */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.35rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card.summary-card-1 {
+  animation: resultSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+.summary-card.summary-card-2 {
+  animation: resultSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+.summary-card.summary-card-3 {
+  animation: resultSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.26s both;
+}
+
+.summary-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.summary-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.summary-value {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.summary-value.highlight {
+  color: var(--accent);
+}
+
+.summary-value.positive {
+  color: var(--positive);
+}
+
+.summary-value.negative {
+  color: var(--negative);
+}
+
+/* ----- Chart section ----- */
+.chart-section {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.chart-section.chart-comparison {
+  animation: resultSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both;
+}
+
+.chart-section.chart-timeline {
+  animation: resultSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.42s both;
+}
+
+.chart-title {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem;
+  color: var(--text);
+}
+
+.chart-wrap {
+  min-height: 320px;
+}
+
+.chart-wrap-bar {
+  min-height: 200px;
+}
+
+.chart-note {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0.75rem 0 0;
+}
+
+/* Line chart custom tooltip – 해당 월 상세 정보 */
+.chart-tooltip {
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  min-width: 200px;
+  box-shadow: var(--shadow);
+}
+
+.chart-tooltip-title {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.chart-tooltip-date {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.chart-tooltip-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chart-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  gap: 16px;
+}
+
+.chart-tooltip-row span:first-child {
+  color: var(--muted);
+}
+
+.chart-tooltip-row span:last-child {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 3rem;
+  font-weight: 500;
+}
+
+.footer {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .result-hero-amount {
+    font-size: 1.5rem;
+  }
+
+  .coin-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .option-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}
